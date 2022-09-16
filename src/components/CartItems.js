@@ -10,7 +10,7 @@ export default function CartItems() {
 	const { clearCartModal } = useSelector((state) => state.modal);
 	const { removeDeviceModal } = useSelector((state) => state.modal);
 	const { cartItems, total, selectedQuantity } = useSelector(
-		(store) => store.cart
+		(state) => state.cart
 	);
 
 	if (selectedQuantity < 1) {
