@@ -9,9 +9,11 @@ export default function CartItems() {
 	const dispatch = useDispatch();
 	const { clearCartModal } = useSelector((state) => state.modal);
 	const { removeDeviceModal } = useSelector((state) => state.modal);
-	const { cartItems, total, selectedQuantity } = useSelector(
-		(state) => state.cart
-	);
+	const {
+		cartItems = [],
+		total = 0,
+		selectedQuantity = 0,
+	} = useSelector((state) => state.cart);
 
 	if (selectedQuantity < 1) {
 		return (
@@ -41,7 +43,7 @@ export default function CartItems() {
 					<hr />
 					<div className='cart-total'>
 						<h4>
-							total <span>${total.toFixed(2)}</span>
+							total <span>${total?.toFixed(2)}</span>
 						</h4>
 					</div>
 					<button

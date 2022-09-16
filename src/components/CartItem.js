@@ -4,13 +4,13 @@ import { DownArrow, UpArrow } from '../icons';
 import { increaseQuantity, decreaseQuantity } from '../Slices/cartSlice';
 
 import { openRemoveDeviceModal } from '../Slices/modalSlice';
-const CartItem = ({ id, img, title, price, quantity }) => {
+const CartItem = ({ id, img, title, price, quantity, total }) => {
 	const dispatch = useDispatch();
 
 	return (
 		<>
 			<article className='cart-item'>
-				<img src={img} alt={title} />
+				{img ? <img src={img} alt={title} /> : <div>Total: {total}</div>}
 				<div>
 					<h4>{title}</h4>
 					<h4 className='item-price'>${price}</h4>
@@ -24,7 +24,9 @@ const CartItem = ({ id, img, title, price, quantity }) => {
 				<div>
 					<button
 						className='amount-btn'
-						onClick={() => dispatch(increaseQuantity(id))}
+						onClick={
+							quantity < total ? () => dispatch(increaseQuantity(id)) : () => {}
+						}
 					>
 						<UpArrow />
 					</button>
